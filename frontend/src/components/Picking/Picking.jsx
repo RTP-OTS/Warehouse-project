@@ -79,6 +79,7 @@ const Picking = () => {
             <select
               name="picking"
               id="picking"
+              data-testid="picking_dropdown"
               value={selectedProductId}
               onChange={handleProductChange}
             >
@@ -91,16 +92,17 @@ const Picking = () => {
             </select>
           </div>
           <div className="input_picking">
-            <p>Quaitity</p>
+            <p>Quantity</p>
             <input
               type="number"
+              data-testid="qty_input"
               value={quantity}
               onChange={handleQuantityChange}
             />
           </div>
           {/* confirm picking */}
           <div className="button_picking">
-            <button onClick={handleSubmit}>confirm picking</button>
+            <button onClick={handleSubmit} data-testid="confirm_button">confirm picking</button>
           </div>
         </div>
 

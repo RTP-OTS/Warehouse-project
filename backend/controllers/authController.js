@@ -5,14 +5,18 @@ const pool = require("../config");
 const login = async (req, res) => {
   try {
     const { username, password } = req.body;
+    console.log(`Attempting to log in with username: ${username}`);
+    
     // query ข้อมูลจาก table users ที่ feild username
-    const result = await pool.query("SELECT * FROM users WHERE username = $1", [
-      username,
-    ]);
+    const result = await pool.query("SELECT * FROM users WHERE username = $1", [username]);
+    
+    console.log(`Query result: ${JSON.stringify(result.rows)}`);
+    
     // ถ้าไม่พบ user
     if (result.rows.length === 0) {
       return res.status(404).json({ error: "User not found" });
     }
+    
     const user = result.rows[0];
     // Match password จาก database
     const passwordMatch = await bcrypt.compare(password, user.password);
@@ -22,9 +26,7 @@ const login = async (req, res) => {
       const token = jwt.sign(
         { userId: user.userid },
         process.env.CLIENT_JWT_SECRET,
-        {
-          expiresIn: "1h",
-        }
+        { expiresIn: "1h" }
       );
       res.status(200).json({
         token,
@@ -34,10 +36,11 @@ const login = async (req, res) => {
       //  ถ้า password ไม่ถูกต้อง
       return res.status(401).json({ error: "Invalid username or password" });
     }
-    // อายุ token อยู่ได้ 7 วัน
   } catch (err) {
+    console.error(err); // Log the error
     res.status(500).json({ error: "Internal server error" });
   }
 };
+
 
 module.exports = { login };

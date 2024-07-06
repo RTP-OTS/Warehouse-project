@@ -31,6 +31,7 @@ const Inventory = () => {
             <input
               type="text"
               placeholder="Search products..."
+              data-testid="search"
               value={searchTerm}
               onChange={handleSearchChange}
             />

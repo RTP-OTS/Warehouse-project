@@ -107,25 +107,26 @@ const Receive = () => {
             <p>Product</p>
             <input
               type="text"
+              data-testid="receive_input"
               value={productName}
               onChange={handleProductName}
             />
           </div>
           <div className="input_receive">
             <p>Quaitity</p>
-            <input type="number" value={quantity} onChange={handleQuantity} />
+            <input type="number" value={quantity} data-testid="quantity_input" onChange={handleQuantity} />
           </div>
 
           {/* confirm receive */}
           <div className="button_receive">
-            <button onClick={handleSubmit}>confirm receive</button>
+            <button onClick={handleSubmit} data-testid="confirm_button">confirm receive</button>
           </div>
         </div>
 
         {/* message receive */}
         {responseMessage && (
           <div className="message_receive">
-            <p
+            <p data-testid="error_message"
               style={{
                 backgroundColor: isSuccess ? "green" : "red",
                 fontSize: "20px",

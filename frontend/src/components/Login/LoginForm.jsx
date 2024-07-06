@@ -14,7 +14,7 @@ const LoginForm = ({ onLogin, errorMessage }) => { // รับ props มาจ�
   return (
     // โครงสร้างรวม form ของ login
     <div className="container_form">
-      <div className="header_form">
+      <div className="header_form" data-testid="login-form">
         {" "}
         {/* หัวเรื่อง form */}
         <h1>Warehouse</h1>
@@ -22,22 +22,24 @@ const LoginForm = ({ onLogin, errorMessage }) => { // รับ props มาจ�
       {/* ช่อง input ใส่ค่า username และ password */}
       <form className="input_form" onSubmit={handleSubmit}>
         <div>
-          <div className="input_form_header">
+          <div className="">
             <label htmlFor="username">Username</label>
           </div>
           <input
             type="text"
+            data-testid="username"
             value={username}
             onChange={(e) => setUsername(e.target.value)}
           />
         </div>
         <div>
-          <div className="input_form_header">
+          <div className="">
             <label htmlFor="password">Password</label>
           </div>
 
           <input
             type="password"
+            data-testid="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
@@ -45,7 +47,7 @@ const LoginForm = ({ onLogin, errorMessage }) => { // รับ props มาจ�
         {errorMessage && <p className="error_message">{errorMessage}</p>}
         {/* ปุ่ม Login */}
         <div className="button_form">
-          <button type="submit">Login</button>
+          <button type="submit" data-testid="login">Login</button>
         </div>
       </form>
     </div>

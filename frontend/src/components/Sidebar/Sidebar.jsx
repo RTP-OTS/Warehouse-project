@@ -29,15 +29,15 @@ const Sidebar = () => {
         <div className="sidebar_header">
           <h1>Warehouse</h1>
         </div>
-        <div className="sidebar_menu">
-          <button onClick={handleRecive}>Recive</button>
-          <button onClick={handlePicking}>Picking</button>
-          <button onClick={handleInventory}>Stock</button>
+        <div className="sidebar_menu" data-testid="main_menu">
+          <button onClick={handleRecive} data-testid="receive_menu">Receive</button>
+          <button onClick={handlePicking} data-testid="picking_menu">Picking</button>
+          <button onClick={handleInventory} data-testid="stock_menu">Stock</button>
         </div>
       </div>
       <div className="sidebar_logout">
         <p>User: {username}</p>
-        <button onClick={handleLogout}>Logout</button>
+        <button onClick={handleLogout} data-testid="logout_button">Logout</button>
       </div>
     </div>
   );
